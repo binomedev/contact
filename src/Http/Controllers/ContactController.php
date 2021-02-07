@@ -36,7 +36,7 @@ class ContactController extends Controller
             'name' => 'required|string|min:3',
             'email' => 'required|email',
             'phone' => 'present',
-            'message' => 'required|string|min:10'
+            'message' => 'required|string|min:10',
         ]);
 
         // Store the details as a subscriber for further usage.

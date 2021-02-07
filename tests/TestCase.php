@@ -2,9 +2,9 @@
 
 namespace Binomedev\Contact\Tests;
 
+use Binomedev\Contact\ContactServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Binomedev\Contact\ContactServiceProvider;
 
 class TestCase extends Orchestra
 {

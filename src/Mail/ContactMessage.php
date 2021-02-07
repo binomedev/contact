@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ContactMessage extends Mailable implements MailMessage
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var string

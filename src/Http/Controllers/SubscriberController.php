@@ -33,6 +33,7 @@ class SubscriberController extends Controller
         }
 
         session()->flash('message', $message);
+
         return back();
     }
 

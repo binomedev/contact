@@ -3,7 +3,6 @@
 namespace Binomedev\Contact\Events;
 
 use Binomedev\Contact\Contracts\MailMessage;
-use App\Models\User;
 use Binomedev\Contact\Models\Subscriber;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -13,7 +12,9 @@ use Illuminate\Queue\SerializesModels;
 
 class MessageSent
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * @var Subscriber
@@ -35,7 +36,6 @@ class MessageSent
         $this->sender = $sender;
         $this->mailable = $mailable;
     }
-
 
     /**
      * Get the channels the event should broadcast on.

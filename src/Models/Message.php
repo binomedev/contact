@@ -21,7 +21,7 @@ class Message extends Model
         'meta',
     ];
 
-    protected $casts =[
+    protected $casts = [
         'meta' => 'array',
     ];
 
