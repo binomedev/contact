@@ -24,7 +24,8 @@ use Illuminate\Notifications\Notifiable;
  */
 class Subscriber extends Model
 {
-    use Notifiable, HasFactory;
+    use Notifiable;
+    use HasFactory;
 
     protected $table = 'contact_subscribers';
 

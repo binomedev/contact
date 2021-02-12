@@ -2,9 +2,9 @@
 
 namespace Binomedev\Contact;
 
+use Binomedev\Contact\Commands\ContactCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Binomedev\Contact\Commands\ContactCommand;
 
 class ContactServiceProvider extends PackageServiceProvider
 {

@@ -101,7 +101,7 @@ class Contact
         );
 
         // Check if the subscriber is set to inactive, if so then set it active again.
-        if (!$subscriber->active) {
+        if (! $subscriber->active) {
             $subscriber->active = true;
             $subscriber->save();
         }
