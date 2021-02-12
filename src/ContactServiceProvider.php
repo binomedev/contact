@@ -19,8 +19,7 @@ class ContactServiceProvider extends PackageServiceProvider
             ->name('contact')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_contact_inbox_table')
-            ->hasMigration('create_contact_subscribers_table')
+            ->hasMigration('create_contact_table')
             ->hasTranslations()
             //->hasCommand(ContactCommand::class)
         ;
