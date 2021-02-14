@@ -20,7 +20,7 @@ class ContactController extends Controller
     {
         $this->seo()->setTitle(__('contact.index_title'));
 
-        return view('contact');
+        return view('contact::index');
     }
 
     /**
