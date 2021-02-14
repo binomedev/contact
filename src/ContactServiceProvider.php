@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\DeferrableProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class ContactServiceProvider extends PackageServiceProvider implements DeferrableProvider
+class ContactServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -28,10 +28,5 @@ class ContactServiceProvider extends PackageServiceProvider implements Deferrabl
     public function packageRegistered()
     {
         $this->app->singleton(Contact::class);
-    }
-
-    public function provides()
-    {
-        return [Contact::class];
     }
 }
