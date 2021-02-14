@@ -20,6 +20,7 @@ class ContactServiceProvider extends PackageServiceProvider implements Deferrabl
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('create_contact_table')
+            ->hasRoute('web')
             ->hasTranslations()//->hasCommand(ContactCommand::class)
         ;
     }
