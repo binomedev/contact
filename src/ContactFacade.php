@@ -11,6 +11,6 @@ class ContactFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'contact';
+        return Contact::class;
     }
 }

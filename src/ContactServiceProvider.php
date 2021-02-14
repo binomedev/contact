@@ -2,11 +2,11 @@
 
 namespace Binomedev\Contact;
 
-use Binomedev\Contact\Commands\ContactCommand;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class ContactServiceProvider extends PackageServiceProvider
+class ContactServiceProvider extends PackageServiceProvider implements DeferrableProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -20,8 +20,17 @@ class ContactServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('create_contact_table')
-            ->hasTranslations()
-            //->hasCommand(ContactCommand::class)
+            ->hasTranslations()//->hasCommand(ContactCommand::class)
         ;
+    }
+
+    public function packageRegistered()
+    {
+        $this->app->singleton(Contact::class);
+    }
+
+    public function provides()
+    {
+        return [Contact::class];
     }
 }
