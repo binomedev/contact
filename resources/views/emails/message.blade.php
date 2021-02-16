@@ -6,7 +6,7 @@
 
 **Contact Options**
 - **Email**: {{ $subscriber->email }}
-@if($user->phone)
+@if($subscriber->phone)
 - **Phone**: {{ $subscriber->phone }}
 @endif
 
