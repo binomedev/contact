@@ -18,7 +18,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $this->seo()->setTitle(__('contact.index_title'));
+        $this->seo()->setTitle(__('contact::messages.index_title'));
 
         return view('contact::index');
     }

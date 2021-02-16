@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'default_email_receiver' => env('DEFAULT_EMAIL_RECEIVER'),
+    'default_email_receiver' => env('MAIL_FROM_ADDRESS'),
     'save_messages' => true,
 
     'emails' => [

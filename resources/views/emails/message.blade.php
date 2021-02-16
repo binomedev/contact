@@ -1,13 +1,13 @@
 @component('mail::message')
 # New Contact Message
-##  From: {{ $user->name }}
+##  From: {{ $subscriber->name }}
 
 {{ $message }}
 
 **Contact Options**
-- **Email**: {{ $user->email }}
+- **Email**: {{ $subscriber->email }}
 @if($user->phone)
-- **Phone**: {{ $user->phone }}
+- **Phone**: {{ $subscriber->phone }}
 @endif
 
 @endcomponent

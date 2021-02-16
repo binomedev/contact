@@ -26,7 +26,7 @@ class SubscriberController extends Controller
 
         $contact->subscribe($email);
 
-        $message = __('contact.subscribed');
+        $message = __('contact::messages.subscribed');
 
         if ($request->wantsJson()) {
             return response()->json(compact('message'));
@@ -54,7 +54,7 @@ class SubscriberController extends Controller
 
         $contact->unsubscribe($subscriber);
 
-        session()->flash('message', __('contact.unsubscribed'));
+        session()->flash('message', __('contact::messages.unsubscribed'));
 
         return redirect()->route('contact.index');
     }

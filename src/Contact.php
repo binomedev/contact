@@ -20,7 +20,7 @@ class Contact
     public function testMessage(): Contact
     {
         $fromUser = Subscriber::factory()->create();
-        $message = __('contact.test_message', ['url' => config('app.url')]);
+        $message = __('contact::messages.test_message', ['url' => config('app.url')]);
 
         $this->send($message, $fromUser);
 
@@ -47,7 +47,7 @@ class Contact
         event(new MessageSent($subscriber, $mailable));
 
         // Inform the user that the message was sent successfully.
-        session()->flash('message', __('contact.message_sent'));
+        session()->flash('message', __('contact::messages.message_sent'));
 
         return $this;
     }
