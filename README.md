@@ -16,12 +16,32 @@ You can install the package via composer:
 composer require binomedev/contact
 ```
 
+Install nova-settings
+```bash
+composer require optimistdigital/nova-settings
+```
+
+Add the following line to the boot method within the NovaServiceProvider.php in order to be able to modify contact data withing Nova.
+
+```php
+use Binomedev\Contact\ContactSettings;
+
+// NovaServiceProvider.php 
+public function boot()
+{
+    // ...
+    ContactSettings::boot();
+}
+```
+
 You can publish and run the migrations with:
 
 ```bash
 php artisan vendor:publish --provider="Binomedev\Contact\ContactServiceProvider" --tag="contact-migrations"
 php artisan migrate
 ```
+
+
 
 You can publish the config file with:
 ```bash
@@ -32,14 +52,52 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'default_email_receiver' => env('MAIL_FROM_ADDRESS'),
+    'save_messages' => true,
+
+    'emails' => [
+        // contact@domain.com
+    ],
+
+    'numbers' => [
+        // +32 1111  111 111
+    ],
+
+    'socials' => [
+
+    ],
+
+    'addresses' => [
+        [
+            'name' => 'Office',
+            'street' => '',
+            'number' => '',
+            'postcode' => '',
+            'city' => '',
+            'country' => '',
+        ],
+    ],
+    'schedule' => [
+        [
+            'days' => '',
+            'hours' => '',
+        ]
+    ],
 ];
 ```
+
+
 
 ## Usage
 
 ```php
-$contact = new Binomedev\Contact();
-echo $contact->echoPhrase('Hello, Binomedev!');
+use Binomedev\Contact\ContactFacade;
+// Subscribe a new email
+$subscriber = ContactFacade::subscribe(
+    $data['email'],
+    $data['name'],
+    $data['phone'],
+);
 ```
 
 ## Testing

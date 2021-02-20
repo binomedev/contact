@@ -9,6 +9,13 @@ use Binomedev\Contact\Models\Message;
 use Binomedev\Contact\Models\Subscriber;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Panel;
+use OptimistDigital\NovaSettings\NovaSettings;
+use Whitecube\NovaFlexibleContent\Flexible;
+use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 
 class Contact
 {
@@ -101,7 +108,7 @@ class Contact
         );
 
         // Check if the subscriber is set to inactive, if so then set it active again.
-        if (! $subscriber->active) {
+        if (!$subscriber->active) {
             $subscriber->active = true;
             $subscriber->save();
         }
