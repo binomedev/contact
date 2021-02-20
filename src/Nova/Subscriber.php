@@ -36,7 +36,7 @@ class Subscriber extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'email', 'name', 'phone', 'ip'
+        'id', 'email', 'name', 'phone', 'ip',
     ];
 
     /**
