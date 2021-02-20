@@ -3,7 +3,6 @@
 
 namespace Binomedev\Contact;
 
-
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -16,7 +15,6 @@ class ContactSettings
 {
     public static function boot()
     {
-
         $casts = [
             'socials' => FlexibleCast::class,
             'emails' => FlexibleCast::class,
@@ -56,7 +54,7 @@ class ContactSettings
             Flexible::make('Socials')->addLayout('Social Media', 'social', [
                 Text::make('Name')->required(),
                 Text::make('Icon')->nullable(),
-                Text::make('Url')->required()->rules('url')
+                Text::make('Url')->required()->rules('url'),
             ])->button('Add Social'),
         ]);
     }
