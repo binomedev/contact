@@ -2,7 +2,6 @@
 
 namespace Binomedev\Contact\Nova;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\BelongsTo;
@@ -37,7 +36,7 @@ class Message extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'subject', 'content','to', 'from'
+        'id', 'subject', 'content','to', 'from',
     ];
 
     /**
