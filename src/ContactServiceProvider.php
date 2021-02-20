@@ -2,6 +2,9 @@
 
 namespace Binomedev\Contact;
 
+use Binomedev\Contact\Nova\Message;
+use Binomedev\Contact\Nova\Subscriber;
+use Laravel\Nova\Nova;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -27,5 +30,13 @@ class ContactServiceProvider extends PackageServiceProvider
     public function packageRegistered()
     {
         $this->app->singleton(Contact::class);
+    }
+
+    public function packageBooted()
+    {
+        Nova::resources([
+            Message::class,
+            Subscriber::class,
+        ]);
     }
 }
