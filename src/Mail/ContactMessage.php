@@ -53,7 +53,7 @@ class ContactMessage extends Mailable implements MailMessage
             ->subject($this->getSubject())
             ->from($this->getSubscriber()->email)
             ->replyTo($this->getSubscriber()->email, $this->getSubscriber()->name)
-            ->markdown('contact::messages.emails.message');
+            ->markdown('contact::emails.message');
     }
 
     public function getSubject(): string
