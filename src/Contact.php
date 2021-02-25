@@ -22,10 +22,9 @@ class Contact
         return URL::signedRoute('contact.unsubscribe', $subscriber);
     }
 
-
     public function settings(): ContactSettings
     {
-        if (!$this->settings) {
+        if (! $this->settings) {
             $this->settings = app(ContactSettings::class);
         }
 
@@ -116,7 +115,7 @@ class Contact
         );
 
         // Check if the subscriber is set to inactive, if so then set it active again.
-        if (!$subscriber->active) {
+        if (! $subscriber->active) {
             $subscriber->active = true;
             $subscriber->save();
         }

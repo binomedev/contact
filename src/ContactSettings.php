@@ -91,7 +91,7 @@ class ContactSettings extends Collection
      */
     private function solveFlexibleCasts(array $settings): Collection
     {
-        return collect($settings)->map(function ($setting, $name)  {
+        return collect($settings)->map(function ($setting, $name) {
             return $this->isFlexible($name)
                 // Cast the value to flexible. We have to do this because NovaSettings casts it only when it saves it to the database and not when retrieving it.
                 ? $this->toFlexible($setting)
@@ -109,6 +109,7 @@ class ContactSettings extends Collection
     private function isFlexible($settingName): bool
     {
         $casts = static::$casts;
+
         return array_key_exists($settingName, $casts) && $casts[$settingName] === FlexibleCast::class;
     }
 
@@ -123,13 +124,15 @@ class ContactSettings extends Collection
      */
     public function primary(string $flexibleSettingKey, string $attributeName = 'value', $primaryKey = 'is_primary')
     {
-        if(!$this->isFlexible($flexibleSettingKey)){
+        if (! $this->isFlexible($flexibleSettingKey)) {
             throw new \Exception("Your are trying to access the setting '{$flexibleSettingKey}' which is not casted as flexible.");
         }
 
         $setting = $this->get($flexibleSettingKey);
 
-        if (is_null($setting)) return null;
+        if (is_null($setting)) {
+            return null;
+        }
 
         $value = $setting->filter(function ($item) use ($primaryKey) {
             return $item[$primaryKey];
@@ -141,7 +144,4 @@ class ContactSettings extends Collection
 
         return optional($value->first())->{$attributeName};
     }
-
-
-
 }
