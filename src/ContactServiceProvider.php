@@ -30,6 +30,7 @@ class ContactServiceProvider extends PackageServiceProvider
     public function packageRegistered()
     {
         $this->app->singleton(Contact::class);
+        $this->app->singleton(ContactSettings::class);
     }
 
     public function packageBooted()

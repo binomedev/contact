@@ -12,9 +12,24 @@ use Illuminate\Support\Facades\URL;
 
 class Contact
 {
+    /**
+     * @var ContactSettings
+     */
+    private $settings;
+
     public function unsubscribeUrl(Subscriber $subscriber): string
     {
         return URL::signedRoute('contact.unsubscribe', $subscriber);
+    }
+
+
+    public function settings(): ContactSettings
+    {
+        if (!$this->settings) {
+            $this->settings = app(ContactSettings::class);
+        }
+
+        return $this->settings;
     }
 
     public function testMessage(): Contact
@@ -101,7 +116,7 @@ class Contact
         );
 
         // Check if the subscriber is set to inactive, if so then set it active again.
-        if (! $subscriber->active) {
+        if (!$subscriber->active) {
             $subscriber->active = true;
             $subscriber->save();
         }
