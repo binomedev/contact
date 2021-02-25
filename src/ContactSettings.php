@@ -46,17 +46,17 @@ class ContactSettings extends Collection
     {
         return new Panel('Contact Information', [
             Flexible::make('Emails')->addLayout('Contact Email', 'contact_email', [
-                Text::make('Email Address')->rules('email', 'required'),
+                Text::make('Email Address', 'value')->rules('email', 'required'),
                 Boolean::make('Is Primary')->default(false),
             ])->button('Add Email'),
 
             Flexible::make('Numbers')->addLayout('Contact Number', 'contact_number', [
-                Text::make('Phone Number')->required(),
+                Text::make('Phone Number', 'value')->required(),
                 Boolean::make('Is Primary')->default(false),
             ])->button('Add Number'),
 
             Flexible::make('Addresses')->addLayout('Address', 'address', [
-                Textarea::make('Address')->required(),
+                Textarea::make('Address', 'value')->required(),
                 Boolean::make('Is Primary')->default(false),
             ])->button('Add Address'),
         ]);
