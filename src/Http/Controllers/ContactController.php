@@ -4,11 +4,18 @@ namespace Binomedev\Contact\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Traits\SEOTools;
+use Binomedev\Contact\Actions\SendMessage;
 use Binomedev\Contact\Contact;
 use Binomedev\Contact\Mail\ContactMessage;
 use Binomedev\Contact\Models\Subscriber;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+/**
+ * Class ContactController
+ * @package Binomedev\Contact\Http\Controllers
+ * @deprecated Use livewire components instead
+ */
 class ContactController extends Controller
 {
     use SEOTools;
@@ -24,29 +31,14 @@ class ContactController extends Controller
     }
 
     /**
-     * Store the contact details
-     * Send an email
-     * @param Contact $contact
+     *
+     * @param SendMessage $sendMessageAction
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Contact $contact)
+    public function store(SendMessage $sendMessageAction, Request $request)
     {
-        // Validate data
-        $data = request()->validate([
-            'name' => 'required|string|min:3',
-            'email' => 'required|email',
-            'phone' => 'present',
-            'message' => 'required|string|min:10',
-        ]);
-
-        // Store the details as a subscriber for further usage.
-        $subscriber = $contact->subscribe(
-            $data['email'],
-            $data['name'],
-            $data['phone']
-        );
-
-        $contact->send($data['message'], $subscriber);
+        $sendMessageAction->run($request->input());
 
         return back();
     }

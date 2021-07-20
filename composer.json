@@ -17,6 +17,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "artesaos/seotools": "^0.20.0",
+        "dacastro4/laravel-gmail": "^5.1",
         "illuminate/contracts": "^8.0",
         "spatie/laravel-package-tools": "^1.1",
         "laravel/nova": "^3.0",

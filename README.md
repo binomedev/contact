@@ -24,13 +24,17 @@ composer require optimistdigital/nova-settings
 Add the following line to the boot method within the NovaServiceProvider.php in order to be able to modify contact data withing Nova.
 
 ```php
-use Binomedev\Contact\ContactSettings;
 
 // NovaServiceProvider.php 
 public function boot()
 {
     // ...
-    ContactSettings::boot();
+    if(!$this->app->runningInConsole()) 
+    {
+        \Binomedev\Contact\ContactSettings::boot();
+        \Binomedev\Settings\MailSettings::boot();
+    }
+
 }
 ```
 
@@ -52,37 +56,12 @@ This is the contents of the published config file:
 
 ```php
 return [
-    'default_email_receiver' => env('MAIL_FROM_ADDRESS'),
+    'default_to' => '',
     'save_messages' => true,
-
-    'emails' => [
-        // contact@domain.com
-    ],
-
-    'numbers' => [
-        // +32 1111  111 111
-    ],
-
-    'socials' => [
-
-    ],
-
-    'addresses' => [
-        [
-            'name' => 'Office',
-            'street' => '',
-            'number' => '',
-            'postcode' => '',
-            'city' => '',
-            'country' => '',
-        ],
-    ],
-    'schedule' => [
-        [
-            'days' => '',
-            'hours' => '',
-        ]
-    ],
+    'save_subscribers' => true,
+    
+    'enable_gmail_api' => env('ENABLE_GMAIL_API', false),
+    'enable_legacy_support' => env('CONTACT_ENABLE_LEGACY_SUPPORT', false),
 ];
 ```
 
@@ -98,6 +77,31 @@ $subscriber = ContactFacade::subscribe(
     $data['name'],
     $data['phone'],
 );
+```
+
+## Using Gmail API
+
+First you need to enable the Gmail API features.
+
+```dotenv
+ENABLE_GMAIL_API=true
+```
+
+Further, add the credentials in the `.env` file.
+
+```dotenv
+GOOGLE_PROJECT_ID=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_REDIRECT_URI=
+```
+
+Or use a JSON credentials file by adding it to the path: `storage/gmail/tokens/gmail-json.json`
+
+Adding more options
+```dotenv
+GOOGLE_ALLOW_MULTIPLE_CREDENTIALS=true
+GOOGLE_ALLOW_JSON_ENCRYPT=true
 ```
 
 ## Testing

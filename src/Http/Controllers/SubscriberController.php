@@ -3,11 +3,19 @@
 namespace Binomedev\Contact\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Binomedev\Contact\Actions\Subscribe;
 use Binomedev\Contact\Contact;
 use Binomedev\Contact\Models\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+
+/**
+ * Class SubscriberController
+ * @package Binomedev\Contact\Http\Controllers
+ * TODO: Refactor the unsubscribe method into a dedicated controller
+ * TODO: Deprecate SubscriberController
+ */
 class SubscriberController extends Controller
 {
     /**
@@ -15,16 +23,10 @@ class SubscriberController extends Controller
      * @param Contact $contact
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, Contact $contact)
+    public function store(Request $request, Subscribe $subscribeAction)
     {
-        $data = $request->validate([
-            'email' => 'required|email',
-        ]);
 
-        $email = $data['email'];
-
-
-        $contact->subscribe($email);
+        $subscribeAction->run($request->input());
 
         $message = __('contact::messages.subscribed');
 

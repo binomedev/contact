@@ -1,35 +1,11 @@
 <?php
 
 return [
-    'default_email_receiver' => env('MAIL_FROM_ADDRESS'),
+    'default_to' => '',
     'save_messages' => true,
+    'save_subscribers' => true,
+    'priority' => 3,
 
-    'emails' => [
-        // contact@domain.com
-    ],
-
-    'numbers' => [
-        // +32 1111  111 111
-    ],
-
-    'socials' => [
-
-    ],
-
-    'addresses' => [
-        [
-            'name' => 'Office',
-            'street' => '',
-            'number' => '',
-            'postcode' => '',
-            'city' => '',
-            'country' => '',
-        ],
-    ],
-    'schedule' => [
-        [
-            'days' => '',
-            'hours' => '',
-        ]
-    ],
+    'enable_gmail_api' => env('ENABLE_GMAIL_API', false),
+    'enable_legacy_support' => env('CONTACT_ENABLE_LEGACY_SUPPORT', false),
 ];

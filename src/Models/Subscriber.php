@@ -3,6 +3,7 @@
 namespace Binomedev\Contact\Models;
 
 use App\Models\User;
+use Binomedev\Contact\Database\Factories\SubscriberFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -44,6 +45,11 @@ class Subscriber extends Model
         'active' => 'bool',
         'data' => 'array',
     ];
+
+    protected static function newFactory()
+    {
+        return new SubscriberFactory();
+    }
 
     /**
      * @return User

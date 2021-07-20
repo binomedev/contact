@@ -13,7 +13,11 @@ class SubscriberFactory extends Factory
     public function definition()
     {
         return [
-            ''
+            'email' => $this->faker->companyEmail,
+            'name' => $this->faker->name,
+            'phone' => $this->faker->phoneNumber,
+            'ip' => $this->faker->ipv4,
+            'agent' => $this->faker->userAgent,
         ];
     }
 }
